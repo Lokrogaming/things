@@ -17,7 +17,7 @@
       color: white;
     }
 
-    /* Hintergrund-Overlay mit Blur */
+    /* Hintergrund mit Blur */
     .background-blur {
       position: fixed;
       inset: 0;
@@ -52,8 +52,8 @@
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
     }
 
-    /* Playbutton */
-    .play-button {
+    /* Play/Stop-Button */
+    .control-button {
       position: absolute;
       bottom: 16px;
       right: 16px;
@@ -65,13 +65,15 @@
       align-items: center;
       justify-content: center;
       transition: background 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
     }
-    .play-button:hover {
+
+    .control-button:hover {
       background: rgba(0, 0, 0, 0.75);
       transform: scale(1.08);
     }
-    .play-button::before {
+
+    .control-button.play::before {
       content: "";
       width: 0;
       height: 0;
@@ -81,19 +83,33 @@
       margin-left: 4px;
     }
 
+    .control-button.stop::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      background: white;
+    }
+
+    /* Spotify-Embed */
     iframe {
       margin-top: 28px;
       border: none;
       border-radius: 20px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    iframe.visible {
+      opacity: 1;
     }
 
     h1 {
       margin-top: 20px;
       font-size: 1.4rem;
       letter-spacing: 0.5px;
-      color: rgba(255,255,255,0.9);
-      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
     }
   </style>
 </head>
@@ -102,24 +118,45 @@
   <div class="background-blur"></div>
 
   <div class="podcast-card" id="playCard">
-    <div class="play-button"></div>
+    <div class="control-button play" id="controlButton"></div>
   </div>
 
   <h1>Move and Grow by Ulla Riemer</h1>
 
-  <iframe id="spotifyFrame" width="340" height="152" style="display:none;"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  <iframe
+    id="spotifyFrame"
+    width="340"
+    height="152"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+  </iframe>
 
   <script>
     const spotifyURL = "https://open.spotify.com/embed/show/0pmDyNfSZtgrqyBP0jw1FA?utm_source=generator&theme=0";
+    const frame = document.getElementById("spotifyFrame");
+    const button = document.getElementById("controlButton");
+    let isPlaying = false;
 
     document.getElementById("playCard").addEventListener("click", () => {
-      const frame = document.getElementById("spotifyFrame");
-      frame.src = spotifyURL;
-      frame.style.display = "block";
-      frame.scrollIntoView({ behavior: "smooth" });
+      if (!isPlaying) {
+        // Start Spotify Embed mit Fade-in
+        frame.src = spotifyURL;
+        frame.classList.add("visible");
+        button.classList.remove("play");
+        button.classList.add("stop");
+        isPlaying = true;
+      } else {
+        // Stop: Fade-out + Entfernen
+        frame.classList.remove("visible");
+        button.classList.remove("stop");
+        button.classList.add("play");
+        setTimeout(() => {
+          frame.src = "";
+        }, 600); // nach dem Fade-out
+        isPlaying = false;
+      }
     });
   </script>
 
 </body>
 </html>
+
