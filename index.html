@@ -6,87 +6,117 @@
   <title>Move and Grow by Ulla Riemer</title>
   <style>
     body {
-      margin:0;
-      height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:url("https://i.scdn.co/image/ab6765630000ba8a0fda93460c221dce043ed938") center/cover no-repeat;
-      font-family:sans-serif;
-      color:white;
-      flex-direction:column;
-      filter: blur(0.3);
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: url("https://i.scdn.co/image/ab6765630000ba8a0fda93460c221dce043ed938") center/cover no-repeat;
+      font-family: "Segoe UI", sans-serif;
+      color: white;
     }
 
+    /* Hintergrund-Overlay mit Blur */
+    .background-blur {
+      position: fixed;
+      inset: 0;
+      backdrop-filter: blur(18px);
+      background: rgba(0, 0, 0, 0.45);
+      z-index: -1;
+    }
+
+    /* Glasscard */
     .podcast-card {
-      position:relative;
-      width:320px;
-      height:320px;
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:0 8px 30px rgba(0,0,0,0.6);
-      background:url("https://i.scdn.co/image/ab6765630000ba8a0fda93460c221dce043ed938") center/cover no-repeat;
-      cursor:pointer;
-      transition:transform 0.2s ease;
-    }
-    .podcast-card:hover {
-      transform:scale(1.03);
+      position: relative;
+      width: 340px;
+      height: 340px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(14px) saturate(130%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-image: url("https://i.scdn.co/image/ab6765630000ba8a0fda93460c221dce043ed938");
+      background-size: cover;
+      background-position: center;
     }
 
+    .podcast-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Playbutton */
     .play-button {
-      position:absolute;
-      bottom:16px;
-      right:16px;
-      width:64px;
-      height:64px;
-      background:rgba(0,0,0,0.5);
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:background 0.3s ease;
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      width: 64px;
+      height: 64px;
+      background: rgba(0, 0, 0, 0.55);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
     }
     .play-button:hover {
-      background:rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.75);
+      transform: scale(1.08);
     }
     .play-button::before {
-      content:"";
-      width:0;
-      height:0;
-      border-left:20px solid white;
-      border-top:12px solid transparent;
-      border-bottom:12px solid transparent;
-      margin-left:4px;
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 20px solid white;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      margin-left: 4px;
     }
 
     iframe {
-      margin-top:24px;
-      border:none;
-      border-radius:16px;
+      margin-top: 28px;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
     }
   </style>
 </head>
 <body>
 
-  <!-- Cover + Play -->
+  <div class="background-blur"></div>
+
   <div class="podcast-card" id="playCard">
     <div class="play-button"></div>
   </div>
 
-  <!-- Spotify-Embed erscheint hier nach Klick -->
-  <iframe id="spotifyFrame" width="320" height="152" style="display:none;"
-    src=""
+  <h1>Move and Grow by Ulla Riemer</h1>
+
+  <iframe id="spotifyFrame" width="340" height="152" style="display:none;"
     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
   <script>
-    // Spotify-Episode oder Show-URI einfügen
     const spotifyURL = "https://open.spotify.com/embed/show/0pmDyNfSZtgrqyBP0jw1FA?utm_source=generator&theme=0";
-    
+
     document.getElementById("playCard").addEventListener("click", () => {
       const frame = document.getElementById("spotifyFrame");
       frame.src = spotifyURL;
       frame.style.display = "block";
-      // optional: scrollen zum Player
       frame.scrollIntoView({ behavior: "smooth" });
     });
   </script>
