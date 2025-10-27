@@ -1,185 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ATG | Aggertal-Gymnasium</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Move and Grow by Ulla Riemer</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #f9fafb;
-      color: #333;
-      margin: 0;
+      margin:0;
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:url("https://unsplash.com/de/fotos/nebeliger-wald-mit-ruhiger-seereflektion-QAg-3gMbtU4") center/cover no-repeat;
+      font-family:sans-serif;
+      color:white;
     }
 
-    /* Navbar */
-    nav {
-      background: white;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    .podcast-card {
+      position:relative;
+      width:320px;
+      height:320px;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 8px 30px rgba(0,0,0,0.6);
+      background:url("https://unsplash.com/de/fotos/eine-rosafarbene-spiralform-vor-weissem-hintergrund-vURU9iRafmk") center/cover no-repeat;
+      cursor:pointer;
+      transition:transform 0.2s ease;
+    }
+    .podcast-card:hover {
+      transform:scale(1.03);
     }
 
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: color 0.3s, transform 0.2s;
+    .play-button {
+      position:absolute;
+      bottom:16px;
+      right:16px;
+      width:64px;
+      height:64px;
+      background:rgba(0,0,0,0.5);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:background 0.3s ease;
+    }
+    .play-button:hover {
+      background:rgba(0,0,0,0.7);
+    }
+    .play-button::before {
+      content:"";
+      width:0;
+      height:0;
+      border-left:20px solid white;
+      border-top:12px solid transparent;
+      border-bottom:12px solid transparent;
+      margin-left:4px;
     }
 
-    nav a:hover {
-      color: #e63946;
-      transform: translateY(-2px);
-    }
-
-    /* Layout */
-    .container {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    /* Cards */
-    .card {
-      background: white;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      margin: 1rem 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: #222;
-    }
-
-    /* Button */
-    .button {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      border-radius: 2rem;
-      background: #e63946;
-      color: white;
-      font-weight: 500;
-      border: none;
-      transition: background 0.3s;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .button:hover {
-      background: #d62828;
-    }
-
-    /* Terminplan */
-    .terminplan {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .termin {
-      background: #fff;
-      border-left: 4px solid #e63946;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    .termin strong {
-      display: block;
-      font-size: 0.95rem;
-      color: #e63946;
-      margin-bottom: 0.3rem;
-    }
-
-    .termin span {
-      font-size: 0.85rem;
-      color: #555;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
+    iframe {
+      margin-top:24px;
+      border:none;
+      border-radius:16px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <a href="#">Start</a>
-    <a href="#">Schule</a>
-    <a href="#">Unterricht</a>
-    <a href="#">Infos</a>
-    <a href="#">Förderverein</a>
-    <a href="#">Schulmanager</a>
-    <a href="#">Lernplattformen</a>
-    <a href="#">Office 365</a>
-    <a href="#">Kontakt</a>
-  </nav>
-
-  <div class="container">
-    <!-- Hauptinhalt -->
-    <div>
-      <div class="card">
-        <h2>Tag der offenen Tür</h2>
-        <p>
-          Am <strong>Samstag, dem 22.11.25</strong> findet unser Tag der offenen Tür statt. 
-          Eltern und Kinder der Grundschulen sowie Schülerinnen und Schüler externer Schulen 
-          im Übergang von Jahrgang 10 in die gymnasiale Oberstufe sind herzlich eingeladen, 
-          das ATG als mögliche zukünftige Schule zu besuchen.
-        </p>
-        <img src="" alt="ATG" style="width:100%;border-radius:0.5rem;margin-top:1rem;">
-        <a href="#" class="button">Weiterlesen</a>
-      </div>
-    </div>
-
-    <!-- Terminplan -->
-    <aside>
-      <div class="card">
-        <h2>Terminplan</h2>
-        <div class="terminplan">
-          <div class="termin">
-            <strong>01. Okt. 2025 – 11:30 - 14:50 Uhr</strong>
-            <span>MGB Einführung in PC + Teams 5a</span>
-          </div>
-          <div class="termin">
-            <strong>08. Okt. 2025 – 11:30 - 14:50 Uhr</strong>
-            <span>MGB Einführung in PC + Teams 5b</span>
-          </div>
-          <div class="termin">
-            <strong>10. Okt. 2025 – 14:00 - 19:30 Uhr</strong>
-            <span>Blutspende</span>
-          </div>
-          <div class="termin">
-            <strong>28. Okt. 2025</strong>
-            <span>Soziales Lernen 6a</span>
-          </div>
-          <div class="termin">
-            <strong>29. Okt. 2025 – 11:30 - 14:50 Uhr</strong>
-            <span>MGB Einführung in PC + Teams 5c</span>
-          </div>
-          <div class="termin">
-            <strong>04. Nov. 2025</strong>
-            <span>Soziales Lernen 6c</span>
-          </div>
-        </div>
-      </div>
-    </aside>
+  <!-- Cover + Play -->
+  <div class="podcast-card" id="playCard">
+    <div class="play-button"></div>
   </div>
+
+  <!-- Spotify-Embed erscheint hier nach Klick -->
+  <iframe id="spotifyFrame" width="320" height="152" style="display:none;"
+    src=""
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+  <script>
+    // Spotify-Episode oder Show-URI einfügen
+    const spotifyURL = "https://open.spotify.com/embed/show/6p4J8D3fqdrtZkD8KJ1M9k?utm_source=generator";
+    
+    document.getElementById("playCard").addEventListener("click", () => {
+      const frame = document.getElementById("spotifyFrame");
+      frame.src = spotifyURL;
+      frame.style.display = "block";
+      // optional: scrollen zum Player
+      frame.scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
 
 </body>
 </html>
