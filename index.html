@@ -15,28 +15,9 @@
       font-family:sans-serif;
       color:white;
       flex-direction:column;
+      filter: blur(0.3);
     }
- .stage {
-      position:relative;
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      color:#fff;
-      overflow:hidden;
-   z-index:-1;
-    }
-    .stage::before{
-      content:"";
-      position:fixed;inset:0;z-index:0;
-      background-image: url('https://i.scdn.co/image/ab6765630000ba8a0fda93460c221dce043ed938');
-      background-size: cover;background-position:center center;
-      filter: blur(12px) saturate(1.1) brightness(0.6);
-      transform: scale(1.08);
-      will-change:transform,filter;
-    }
-    .stage::after{
-      content:"";position:fixed;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,0.25),rgba(0,0,0,0.6));
-    }
+
     .podcast-card {
       position:relative;
       width:320px;
@@ -86,7 +67,7 @@
   </style>
 </head>
 <body>
-<div  class="stage">
+
   <!-- Cover + Play -->
   <div class="podcast-card" id="playCard">
     <div class="play-button"></div>
@@ -96,7 +77,7 @@
   <iframe id="spotifyFrame" width="320" height="152" style="display:none;"
     src=""
     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-</div>
+
   <script>
     // Spotify-Episode oder Show-URI einfügen
     const spotifyURL = "https://open.spotify.com/embed/show/0pmDyNfSZtgrqyBP0jw1FA?utm_source=generator&theme=0";
