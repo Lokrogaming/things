@@ -1,0 +1,21 @@
+placeholderBGPic https://unsplash.com/de/fotos/nebeliger-wald-mit-ruhiger-seereflexion-QAg-3gMbtU4
+CSSIdeas:
+backgroundBlur
+Glassblur
+Cards
+
+
+metaTags:
+og:image: [placeholderImage]https://unsplash.com/de/fotos/eine-rosafarbene-spiralform-vor-weissem-hintergrund-vURU9iRafmk 
+og:text: "Move and Grow by Ulla Riemer"
+og:description: "Der Podcast wenn es um Beziehung zu anderen und zu dir selbst geht"
+author:"LokroGaming"
+google:notranslate
+charset:UTF-8
+
+headAttr:
+title:"Move and Grow by Ulla Riemer"
+icon: [placeholder] https://picsum.photos/100/100
+HTMLLayout:
+
+MainCard SpotifyPodcastplayer Alignment:center roundedCorners background:glassBlur
