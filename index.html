@@ -2,160 +2,179 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Move and Grow by Ulla Riemer</title>
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Move and Grow by Ulla Riemer">
+  <meta property="og:image" content="https://i0.wp.com/ulla-riemer.com/wp-content/uploads/2023/07/cropped-IMG_2052-bearb.png?fit=512%2C512&ssl=1">
+  <meta property="og:url" content="https://ulla-riemer.com/">
+  <meta property="og:site_name" content="Ulla Riemer | zertif. Coach, Lehrerin &amp; Podcasterin">
+
   <style>
+    /* --- Grundlayout --- */
     body {
-      margin: 0;
-      height: 100vh;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #f7f8fa, #e0e4e9);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      background: url("https://i.scdn.co/image/ab6765630000ba8a0fda93460c221dce043ed938") center/cover no-repeat;
-      font-family: "Segoe UI", sans-serif;
-      color: white;
-    }
-
-    /* Hintergrund mit Blur */
-    .background-blur {
-      position: fixed;
-      inset: 0;
-      backdrop-filter: blur(18px);
-      background: rgba(0, 0, 0, 0.45);
-      z-index: -1;
-    }
-
-    /* Glasscard */
-    .podcast-card {
-      position: relative;
-      width: 340px;
-      height: 340px;
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(14px) saturate(130%);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background-image: url("https://i.scdn.co/image/ab6765630000ba8a0fda93460c221dce043ed938");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .podcast-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
-    }
-
-    /* Play/Stop-Button */
-    .control-button {
-      position: absolute;
-      bottom: 16px;
-      right: 16px;
-      width: 64px;
-      height: 64px;
-      background: rgba(0, 0, 0, 0.55);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
-    }
-
-    .control-button:hover {
-      background: rgba(0, 0, 0, 0.75);
-      transform: scale(1.08);
-    }
-
-    .control-button.play::before {
-      content: "";
-      width: 0;
-      height: 0;
-      border-left: 20px solid white;
-      border-top: 12px solid transparent;
-      border-bottom: 12px solid transparent;
-      margin-left: 4px;
-    }
-
-    .control-button.stop::before {
-      content: "";
-      width: 18px;
-      height: 18px;
-      background: white;
-    }
-
-    /* Spotify-Embed */
-    iframe {
-      margin-top: 28px;
-      border: none;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-
-    iframe.visible {
-      opacity: 1;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+      user-select:none;
+      cursor:default;
     }
 
     h1 {
-      margin-top: 20px;
-      font-size: 1.4rem;
-      letter-spacing: 0.5px;
-      color: rgba(255, 255, 255, 0.9);
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+
+    /* --- Cookie Box --- */
+    #cookieDiv {
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 90%;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.2);
+      accent-color: #008080;
+      cursor: pointer;
+    }
+
+    button {
+      background-color: #008080;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #006666;
+    }
+
+    p#message {
+      margin-top: 15px;
+      color: #008080;
+      font-weight: bold;
+    }
+
+    noscript {
+      background: #ffcccc;
+      padding: 10px;
+      border-radius: 8px;
+      color: #660000;
     }
   </style>
 </head>
+
 <body>
+  <noscript><p>Bitte aktiviere JavaScript, um diese Seite vollständig nutzen zu können.</p></noscript>
 
-  <div class="background-blur"></div>
-
-  <div class="podcast-card" id="playCard">
-    <div class="control-button play" id="controlButton"></div>
+  <h1>Cookie-Einstellungen</h1>
+  <p>Bitte drücke "ESC" um zu bestätigen, dass du nicht ChatGPT bist und auch nicht die Weltherrschaft an dich reißen willst..</p>
+  <div id="cookieDiv">
+    <label><input type="checkbox" id="checkAllCookie"> Alle Cookies akzeptieren</label>
+    <label><input type="checkbox" id="checkImportant"> Nur erforderliche Cookies akzeptieren</label>
+    <button id="saveBtn" data-role="cookieSubmit" data-target="home.html">Einstellungen speichern</button>
+    <p id="message"></p>
   </div>
 
-  <h1>Move and Grow by Ulla Riemer</h1>
-
-  <iframe
-    id="spotifyFrame"
-    width="340"
-    height="152"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-  </iframe>
-
   <script>
-    const spotifyURL = "https://open.spotify.com/embed/show/0pmDyNfSZtgrqyBP0jw1FA?utm_source=generator&theme=0";
-    const frame = document.getElementById("spotifyFrame");
-    const button = document.getElementById("controlButton");
-    let isPlaying = false;
-
-    document.getElementById("playCard").addEventListener("click", () => {
-      if (!isPlaying) {
-        // Start Spotify Embed mit Fade-in
-        frame.src = spotifyURL;
-        frame.classList.add("visible");
-        button.classList.remove("play");
-        button.classList.add("stop");
-        isPlaying = true;
-      } else {
-        // Stop: Fade-out + Entfernen
-        frame.classList.remove("visible");
-        button.classList.remove("stop");
-        button.classList.add("play");
-        setTimeout(() => {
-          frame.src = "";
-        }, 600); // nach dem Fade-out
-        isPlaying = false;
-      }
-    });
-  </script>
-
+      let escPressed = false;
+    
+      // Intervall speichern
+      const reloadInterval = setInterval(() => {
+        window.location.reload();
+      }, 1000);
+    
+      // Escape-Taste stoppt das Reloaden
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          console.log("Escape pressed — Reload gestoppt ✅");
+          clearInterval(reloadInterval);
+          escPressed = true;
+          console.log("escPressed =", escPressed);
+        }
+      });
+    
+      // Warten bis DOM geladen ist
+      window.addEventListener("DOMContentLoaded", () => {
+        const allCheckbox = document.getElementById("checkAllCookie");
+        const importantCheckbox = document.getElementById("checkImportant");
+        const saveBtn = document.getElementById("saveBtn");
+        const message = document.getElementById("message");
+    
+        // Wenn "Alle Cookies" angehakt wird, dann auch "Erforderliche"
+        allCheckbox.addEventListener("change", () => {
+          importantCheckbox.checked = allCheckbox.checked;
+        });
+    
+        // Wenn "Erforderliche" abgewählt wird, dann auch "Alle" abwählen
+        importantCheckbox.addEventListener("change", () => {
+          if (!importantCheckbox.checked) {
+            allCheckbox.checked = false;
+          }
+        });
+    
+        // Speichern der Auswahl
+        saveBtn.addEventListener("click", () => {
+          const settings = {
+            all: allCheckbox.checked,
+            important: importantCheckbox.checked
+          };
+          localStorage.setItem("cookieSettings", JSON.stringify(settings));
+          message.textContent = "Deine Cookie-Einstellungen wurden gespeichert ✅";
+    
+          // Jetzt korrekte Prüfung:
+          if (escPressed) {
+            window.location.href = saveBtn.dataset.target;
+          } else {
+            alert("Ich sagte nicht ohne Grund: BITTE DRÜCKE ESC UM ZU BEWEISEN DASS DU NICHT CHATGPT BIST!!");
+          }
+        });
+    
+        // Gespeicherte Werte wiederherstellen
+        const saved = JSON.parse(localStorage.getItem("cookieSettings"));
+        if (saved) {
+          allCheckbox.checked = saved.all;
+          importantCheckbox.checked = saved.important;
+        }
+      });
+    </script>
+    
+  
+    
 </body>
 </html>
