@@ -1,0 +1,20 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Story+Script&family=The+Girl+Next+Door&display=swap');
+@font-face {
+    font-family: 'Montserrat';
+    
+    src: url('https://fonts.wp.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2') format('woff2');
+  }
+  
+
+.the-girl-next-door-regular {
+    font-family: "The Girl Next Door", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .story-script-regular {
+    font-family: "Story Script", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
